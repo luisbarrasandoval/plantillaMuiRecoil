@@ -6,13 +6,12 @@ import { pages } from "./menu";
 import { Stack } from "@mui/material";
 
 function App() {
-  const [open, setOpen] = useState(false);
   return (
     <Stack direction="row">
-      <MiniDrawer open={open} setOpen={setOpen} pages={pages} />
+      <MiniDrawer pages={pages} />
       <Stack direction="column" sx={{
         height: "100vh",
-        padding: 3,
+        padding: 2,
       }}>
         <MyBreadcrumbs />
         <Routes>

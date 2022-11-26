@@ -70,12 +70,11 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 interface MiniDraweProps {
-  open: boolean;
-  setOpen: (e: boolean) => void;
   pages: Page[];
 }
 
-const MiniDrawer: React.FC<MiniDraweProps> = ({ open, setOpen, pages }) => {
+const MiniDrawer: React.FC<MiniDraweProps> = ({  pages }) => {
+  const [ open, setOpen ] = React.useState(false);
   const location = useLocation();
 
   return (
