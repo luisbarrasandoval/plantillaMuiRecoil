@@ -17,12 +17,11 @@ import {
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Stack } from "@mui/system";
 import { FC, MouseEvent, useCallback, useMemo, useState } from "react";
-import { useColorMode } from "../context/ColorModeContext";
+import useToogleThemeMode from "../hooks/useToogleThemeMode";
 
 const SideBarUser: FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const { toggleColorMode } = useColorMode();
-  const theme = useTheme();
+  const { mode, toggleTheme } = useToogleThemeMode();
   const open = Boolean(anchorEl);
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -37,13 +36,13 @@ const SideBarUser: FC = () => {
       { label: "Profile", icon: <Person />, callback: handleClose },
       { label: "My account", icon: <AccountBalance />, callback: handleClose },
       {
-        label: theme.palette.mode === "dark" ? "Modo claro" : "Modo Oscuro",
-        icon: theme.palette.mode === "dark" ? <LightMode /> : <DarkMode />,
-        callback: toggleColorMode,
+        label: mode === "dark" ? "Modo claro" : "Modo Oscuro",
+        icon: mode === "dark" ? <LightMode /> : <DarkMode />,
+        callback: toggleTheme,
       },
       { label: "Logout", icon: <Logout />, callback: handleClose },
     ],
-    [theme.palette.mode]
+    [mode]
   );
 
   return (
